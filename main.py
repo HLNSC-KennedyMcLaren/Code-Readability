@@ -6,7 +6,7 @@ phone = input("Please input your phone number.\n-")
 while True:
     width = float(input("Please enter the width of your lawn in meters to the 2nd decimal place\n-"))
     length = float(input("Please enter the length of your lawn in meters to the 2nd decimal place\n-"))
-    if width <= 2.0 or width >= 30.0 or length <= 2.0 or length >= 50:
+    if width < 2.0 or width > 30.0 or length < 2.0 or length > 50:
         print("Sorry, that's an unavailable size. Please try a different size")
     else:
         break
@@ -19,18 +19,19 @@ standard = 1.80
 luxury = 2.15
 lawn_care = input("Please input the quality of your lawn care. 0 = none, 1 = economy, 2 = standard, 3 = luxury\n-")
 if lawn_care == '1':
-    value = economy * area
+    area_value = economy * area
 elif lawn_care == '2':
-    value = standard * area
+    area_value = standard * area
 elif lawn_care == '3':
-    value = luxury * area
+    area_value = luxury * area
 else:
-    value = area
+    area_value = area
 
 #end ish (totals)
 labour = area * 1.50
-total = labour + value
-total = total * 1.2
+total = labour + area_value
+totalVAT = total * 1.2
+totalVAT = round(totalVAT, 2)
 total = round(total, 2)
 
 #actual end (print the bill)
@@ -43,6 +44,7 @@ print("labour:", labour)
 if lawn_care == '0':
     pass
 else:
-    print("Lawn care:", lawn_care, "value:",value)
-print("Total:", total)
+    print("Lawn care:", lawn_care, "value:",area_value)
+print("Total:", totalVAT)
+print("Total before VAT:", total)
 #3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
